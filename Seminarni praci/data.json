@@ -1,0 +1,247 @@
+{
+  "game_title": "LAB MAYHEM",
+  "subtitle": "CHEMICKÁ LABORKA: CESTA ZA POKLADEM",
+  "settings": {
+    "name_max_length": 50,
+    "answer_delay_ms": 2000,
+    "memorize_time_seconds": 15,
+    "secret_code_length": 5
+  },
+  "intro": {
+    "start_prompt": "Stiskni ENTER a začni hru...",
+    "player_name_prompt": "Zadej jméno svého charakteru: ",
+    "rules": [
+      "Na krátký okamžik ti stíny dovolí spatřit zakázaný postup.",
+      "Jakmile čas vyprší, vše pohltí mlha zapomnění.",
+      "Každá otázka je zkouškou tvé paměti i odvahy.",
+      "Správná odpověď probudí jedno zapomenuté číslo.",
+      "Chyba otevře bránu prázdnotě a část kódu zmizí.",
+      "Teprve úplný kód dokáže zlomit pečeť pokladu.",
+      "Selžeš-li, poklad zůstane spát v temnotě."
+    ],
+    "continue_prompt": "Pokud jsi už četl pravidla, stiskni ENTER pro pokračování..."
+  },
+  "levels": [
+    {
+      "id": 1,
+      "name": "Foam Apocalypse",
+      "title": "Level 1 - Foam Apocalypse",
+      "video_path": "video_reakce\\elephant.mp4",
+      "instructions": [
+        "Bezpečnost: rukavice + brýle",
+        "Kádinka 1: 180ml H₂O₂ peroxid vodíku, 2 lžíčka saponátu, trochu potravinářského barviva",
+        "Kádinka 2: 15g droždí + 3 lžíce vlažné vody, promíchat.",
+        "Smíchání: nalij 2 do 1"
+      ],
+      "ingredients": [
+        "180ml H₂O₂",
+        "peroxid vodíku",
+        "2 lžíčka saponátu",
+        "potravinářské barvivo",
+        "15g droždí",
+        "3 lžíce vlažné vody"
+      ],
+      "questions": [
+        {
+          "id": 1,
+          "type": "text",
+          "q": "Zadejte název H₂O₂: ",
+          "answers": [
+            "peroxid vodiku",
+            "peroxid vodíku",
+            "peroxidvodiku"
+          ]
+        },
+        {
+          "id": 2,
+          "type": "number",
+          "q": "Kolik gramů droždí (katalyzátoru) použiješ(gram)?: ",
+          "answer": 15
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Midnight Neon",
+      "title": "Level 2 - Midnight Neon",
+      "video_path": "video_reakce\\luminol.mp4",
+      "instructions": [
+        "Bezpečnost: rukavice + brýle",
+        "Kádinka 1: Smíchej 2ml 8% chlornanu sodného (bělidla) s 200 ml destilované vody",
+        "Kádinka 2: Vezmi 0,8g hydroxidu sodného + 0,1g luminolu",
+        "Smíchání: nalij 2 do 1"
+      ],
+      "ingredients": [
+        "2ml 8% chlornanu sodného",
+        "200 ml destilované vody",
+        "0,8g hydroxidu sodného",
+        "0,1g luminolu"
+      ],
+      "questions": [
+        {
+          "id": 1,
+          "type": "number",
+          "q": "Kolik ml chlornanu sodného: ",
+          "answer": 2
+        },
+        {
+          "id": 2,
+          "type": "text",
+          "q": "0,8 g čeho máme smíchat s 0,1 g luminolu: ",
+          "answers": [
+            "hydroxid sodny",
+            "hydroxid sodný",
+            "hydroxidsodny"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Howl of the Hellhound",
+      "title": "Level 3 - Howl of the Hellhound",
+      "video_path": "video_reakce\\barking_dog.mp4",
+      "instructions": [
+        "Bezpečnost: rukavice + brýle",
+        "Válec 1: nalníme 1-1,5litru plynu(N₂O nebo NO)",
+        "Přijdáme ~2-3ml sirouhlíku (CS₂), zakryjem válec a protřepem.",
+        "Otevřem a zapalíme"
+      ],
+      "ingredients": [
+        "1-1,5 litru plynu N₂O nebo NO",
+        "2-3ml sirouhlíku (CS₂)"
+      ],
+      "questions": [
+        {
+          "id": 1,
+          "type": "text",
+          "q": "Jaký plyn se v experimentu používá kromě NO nebo N₂O(napiš název plynu): ",
+          "answers": [
+            "sirouhlik",
+            "sirouhlík"
+          ]
+        },
+        {
+          "id": 2,
+          "type": "number",
+          "q": "Kolik sirouhlíku se přidává na 1 litr plynu(v ml): ",
+          "answer": 2
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Iron Rain",
+      "title": "Level 4 - Iron Rain",
+      "video_path": "video_reakce\\thermit.mp4",
+      "instructions": [
+        "Bezpečnost: rukavice + brýle",
+        "Smícháme v poměru 3(Hliníku[Al):8(Oxid železitý[Fe₂O₃)",
+        "Potřebujeme vysokou teplotu k aktivaci, proto do směsi prášku zapíchneme hořčíkovou tyčinku a zapálíme ji."
+      ],
+      "ingredients": [
+        "hliník (Al)",
+        "oxid železitý (Fe₂O₃)",
+        "hořčíková tyčinka"
+      ],
+      "questions": [
+        {
+          "id": 1,
+          "type": "text",
+          "q": "Jak se jinak říká hliníku: ",
+          "answers": [
+            "aluminium"
+          ]
+        },
+        {
+          "id": 2,
+          "type": "text",
+          "q": "V jakém minerálu se oxid železitý (Fe₂O₃) vyskytuje nejčastěji: ",
+          "answers": [
+            "hematit"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Abyssal Detonation",
+      "title": "Level 5 - Abyssal Detonation",
+      "video_path": "video_reakce\\bubble.mp4",
+      "instructions": [
+        "Bezpečnost: rukavice + brýle",
+        "Nastříkej dva plyny vodík 17:3 kyslík do jednoho balónku",
+        "Balónek pak pomocí hadičky vypusť do nádoby s mýdlovou vodou",
+        "Na hladině se vytvoří bubliny, vezmi zapalovač a tyto bubliny zapal"
+      ],
+      "ingredients": [
+        "vodík",
+        "kyslík",
+        "balónek",
+        "mýdlová voda",
+        "zapalovač"
+      ],
+      "questions": [
+        {
+          "id": 1,
+          "type": "text",
+          "q": "Jak se nazývá látka vznikající reakcí vodíku a kyslíku?: ",
+          "answers": [
+            "voda"
+          ]
+        },
+        {
+          "id": 2,
+          "type": "text",
+          "q": "Jak se obecně označuje prudká reakce doprovázená uvolněním velkého množství energie?: ",
+          "answers": [
+            "exploze"
+          ]
+        }
+      ]
+    }
+  ],
+  "system_messages": {
+    "correct_answer": "(👍🏻ᴗ _ᴗ)👍🏻,Správně!",
+    "retry_prompt": ", chceš znovu zkusit? (ano/ne): ",
+    "thanks_for_playing": "Díky za hraní! 👋🏻",
+    "watch_reaction_prompt": "chcete vidět reakce? (ano/ne): ",
+    "after_video_prompt": "Až zavřeš video, stiskni ENTER...",
+    "level_success": "Stíny tentokrát ustoupily tvé vůli. Z hlubin se vynořilo jedno zapomenuté číslo.",
+    "level_completed_with_error": "Tento level jsi nakonec překonal, ale kvůli chybě ti stíny číslo neodhalí.",
+    "secret_reveal_intro": "Stíny odhalují tajemství...",
+    "secret_number_format": "✦{level}. Číslo: {number} ✦",
+    "treasure_intro_1": "Z hlubin se cosi probouzí...",
+    "treasure_intro_2": "Temnota šeptá tvé jméno...",
+    "fail_final": "Tvá ruka se zachvěla. Rozhodl jsi se nečelit osudu – poklad si počká na někoho odvážnějšího",
+    "show_password_prefix": "Tajné heslo bylo: "
+  },
+  "final_code_game": {
+    "prompt_title": "Zadej své heslo a vyvolej stíny minulosti.",
+    "position_prompt": "Na [{position}] pozici dlí tvé první rozhodnutí: ",
+    "correct_position_message": "Stíny potvrdily tvou volbu. Číslo {number} svůj pravý osud.",
+    "wrong_position_message": "Stín tě mýlí: Číslo {number} je přítomno, leč bloudí na špatném místě.",
+    "success": "Předivo stínů se rozestoupilo. Odhadli jste tajný klíč.",
+    "modes": {
+      "five_errors": {
+        "attempts": 5,
+        "intro": "Předivo osudu ti darovalo 5 pokusů. Využij je moudře, nebo tě pohltí prázdnota",
+        "failure": "Pátý pokus byl tvůj poslední. Světlo naděje zhaslo – poklad ti nenáleží, patří nyní temnotě."
+      },
+      "one_to_four_errors": {
+        "attempts": 3,
+        "intro": "Předivo osudu ti darovalo 3 pokusů. Využij je moudře, nebo tě pohltí prázdnota",
+        "failure": "Třetí pokus byl tvůj poslední. Světlo naděje zhaslo – poklad ti nenáleží, patří nyní temnotě."
+      },
+      "no_errors": {
+        "attempts": 1,
+        "failure": "Stíny ti odhalily všechna tajná čísla… ale tvé zaváhání udrželo poklad zapečetěný."
+      }
+    }
+  },
+  "assets": {
+    "wrong_answer_video": "video_reakce\\explosion.mp4",
+    "treasure_text_file": "poklad.txt",
+    "treasure_video_folder": "video_poklad"
+  }
+}

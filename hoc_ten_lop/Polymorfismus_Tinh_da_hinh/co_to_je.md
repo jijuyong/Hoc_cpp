@@ -1,0 +1,97 @@
+## Tính đa hình (Polymorfismus)
+vd: : Bạn có một danh sách các con vật Zvire. Thay vì phải kiểm tra xem con này là Chó (Pes), Mèo (Kocka) hay Chim (Ptak) để gọi hàm kêu tương ứng, bạn chỉ cần ra lệnh chung: zvire->udelejZvuk(). Tự hệ thống sẽ biết Chó thì sủa, Mèo thì kêu meo.
+
+### Phương thức ảo (Virtual Functions) & Cơ chế chạy ngầm
+
+**Statická vazba (Liên kết tĩnh - Early Binding)**
+- Khi nào xảy ra: Khi hàm KHÔNG có từ khóa virtual.
+- Cơ chế: Trình biên dịch (Compiler) nhìn vào kiểu dữ liệu của con trỏ lúc viết code để quyết định gọi hàm nào.
+- Ví dụ: Nếu Zvire* z = new Pes(); và hàm không có virtual, kiểu con trỏ là Zvire*, nên compiler sẽ bốc luôn hàm của lớp Zvire ra chạy. Kết quả là "Neznamy zvuk zvirete" (Rõ ràng là tạo ra con Chó nhưng lại kêu tiếng con vật lạ).
+
+**Dynamická vazba (Liên kết động - Late Binding)**
+- Khi nào xảy ra: Khi hàm có từ khóa virtual.
+- Cơ chế: Compiler sẽ hoãn việc quyết định lại. Khi chương trình thực sự chạy (Runtime), máy tính sẽ nhìn vào vùng nhớ thực tế mà con trỏ đang trỏ tới là gì (À, hóa ra là một ông Pes). Nó sẽ vào lớp Pes để lôi hàm ra chạy.
+- Bật mí cơ chế ngầm (V-Table): Khi bạn dùng virtual, C++ sẽ bí mật tạo ra một bảng gọi là V-Table (Virtual Table) cho mỗi lớp, chứa địa chỉ của các hàm ảo. Mỗi đối tượng sẽ có một con trỏ ẩn vptr trỏ tới bảng này. Khi gọi hàm, chương trình sẽ tra bảng này để tìm đúng hàm của lớp con. Do phải tra bảng nên hàm virtual sẽ chạy chậm hơn một chút xíu so với hàm thường, nhưng đổi lại tính linh hoạt cực kỳ cao.
+
+```c++
+class Zvire {
+public:
+    // Tato metoda je označena jako virtuální
+    virtual void udelejZvuk() {
+        cout << "Neznamy zvuk zvirete" << endl;
+    }
+};
+
+class Pes : public Zvire {
+public:
+    // Tato metoda "přepisuje" (overrides) virtuální metodu rodiče
+    void udelejZvuk() override { // 'override' je dobrá praxe, kontroluje překlepy
+        cout << "Haf!" << endl;
+    }
+};
+
+class Kocka : public Zvire {
+public:
+    // Tato metoda také přepisuje metodu rodiče
+    void udelejZvuk() override {
+        cout << "Mnau!" << endl;
+    }
+};
+
+int main() {
+    Zvire* z1 = new Pes();
+    Zvire* z2 = new Kocka();
+
+    z1->udelejZvuk(); // Vypíše "Haf!"
+    z2->udelejZvuk(); // Vypíše "Mnau!"
+}
+```
+Từ khóa *override* để làm gì?
+Khi bạn viết lớp con và muốn ghi đè hàm của lớp cha, bạn nên thêm override.
+- Nếu bạn viết nhầm: void udelejzvuk() (chữ z viết thường, sai khác với cha).
+- Không có override: Compiler tưởng đây là một hàm mới hoàn toàn của lớp con -> Code vẫn chạy nhưng tính đa hình bị hỏng.
+- Có override: Compiler kiểm tra lớp cha và bảo: "Này, lớp cha không có hàm nào tên là udelejzvuk cả, cậu viết sai chính tả rồi!" -> Báo lỗi ngay lập tức để bạn sửa.
+
+
+### Lớp trừu tượng (Abstraktní Třídy) & Hàm ảo thuần túy
+- Đoạn này trả lời cho câu hỏi lý thuyết: "Con vật chung chung (Zvire) hay Hình học chung chung (Tvar) thì kêu thế nào, diện tích bằng bao nhiêu?" -> Câu trả lời là Không biết.Vì không biết diện tích hình chung chung tính thế nào, ta bỏ trống phần thân hàm và đặt = 0 (gọi là Pure Virtual Function - Hàm ảo thuần túy).
+
+```c++
+class Tvar { // Toto je nyní abstraktní třída
+public:
+    // Čistě virtuální metoda
+    virtual double obsah() = 0; 
+};
+```
+### Destruktor ảo (Virtual Destruktor) - Hiểm họa rò rỉ bộ nhớ
+- Đây là lỗi cực kỳ kinh điển của lập trình viên C++ sơ cấp. Hãy xem kịch bản sau:
+- Lớp Pes (Chó) khi được tạo ra có xin cấp phát một vùng nhớ cho "tên của nó" hoặc "mảng xương" bằng lệnh new.
+
+```c++
+class Zvire {
+public:
+    // ...
+    virtual ~Zvire() {
+        cout << "Destruktor Zvirete" << endl;
+    }
+};
+
+class Pes : public Zvire {
+public:
+    // ...
+    ~Pes() {
+        cout << "Destruktor Psa" << endl;
+    }
+};
+
+int main() {
+    Zvire* z = new Pes();
+    delete z; 
+    // Díky 'virtual ~Zvire()' se vypíše:
+    // 1. "Destruktor Psa"
+    // 2. "Destruktor Zvirete"
+}
+```
+- Nếu Destruktor của Zvire KHÔNG có virtual: Khi gọi delete z, hệ thống nhìn vào kiểu con trỏ (Zvire*), nó chỉ kích hoạt hủy kích thước của phần Zvire. Hệ quả là hàm hủy ~Pes() của lớp con không được gọi ->vùng nhớ "mảng xương" của con chó bị kẹt lại trong RAM mãi mãi (Rò rỉ bộ nhớ - Memory Leak).
+- Nếu có virtual ~Zvire(): Nhờ liên kết động, hệ thống biết đối tượng thực tế là Pes. Nó sẽ gọi ~Pes() trước (để giải phóng đống xương), sau đó tự động gọi ngược lên ~Zvire() để dọn dẹp nốt phần còn lại. RAM hoàn toàn sạch sẽ.
+- Quy tắc nằm lòng trong C++: Bất cứ khi nào một lớp có ít nhất một hàm virtual, hãy luôn luôn làm cho Destruktor của lớp đó thành virtual.

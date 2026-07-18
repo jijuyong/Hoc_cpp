@@ -1,0 +1,17 @@
+1. Bản chất cốt lõi
+- Pointer (Ukazatel): Hãy tưởng tượng nó như một mẩu giấy ghi địa chỉ nhà. 
+Bạn có thể xóa địa chỉ cũ đi để viết địa chỉ mới, hoặc để trống mẩu giấy đó (nullptr). 
+Để vào được trong nhà, bạn phải thực hiện hành động "nhìn vào địa chỉ rồi đi đến đó" (dereference *ptr).
+
+- Reference: Hãy tưởng tượng nó như một biệt danh (nickname). 
+Nếu bạn tên là "Nam" và mọi người gọi bạn là "Tí", thì "Nam" và "Tí" chính là một người. 
+Bạn không thể đổi tên "Tí" để gọi một người khác được.
+
+Đặc tính                Ukazatel (Pointer)                           Reference
+Cú pháp                       int* ptr                                   int& ref
+Khởi tạo           Không bắt buộc ngay (có thể để sau)     Bắt buộc phải gán giá trị ngay khi tạo
+Giá trị trống              Có thể là nullptr                   Không bao giờ được trống
+Thay đổi mục tiêu       Có thể trỏ sang biến khác            Không thể, dính chặt với biến ban đầu
+Truy cập giá trị     Cần dùng toán tử giải tham chiếu *ptr   Dùng trực tiếp như tên biến bình thường
+
+

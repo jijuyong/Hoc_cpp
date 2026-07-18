@@ -1,0 +1,26 @@
+{
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": true
+  },
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.acceptSuggestionOnEnter": "on",
+  "editor.parameterHints.enabled": true,
+  "editor.suggestSelection": "recentlyUsedByPrefix",
+  "editor.inlineSuggest.enabled": true,
+  "editor.quickSuggestionsDelay": 10,
+  "editor.suggest.showKeywords": true,
+  "editor.suggest.showSnippets": true,
+  "editor.suggestLocalityBonus": true,
+  "C_Cpp.autocomplete": "Default",
+  "C_Cpp.intelliSenseEngine": "Default",
+  "C_Cpp.intelliSenseEngineFallback": "Enabled",
+  "C_Cpp.default.cppStandard": "c++17",
+  "files.associations": {
+    "*.cpp": "cpp",
+    "*.cc": "cpp",
+    "*.h": "cpp",
+    "*.hpp": "cpp"
+  }
+}
