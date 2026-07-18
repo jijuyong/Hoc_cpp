@@ -1,18 +1,25 @@
-#pragma oncew
+#ifndef ZASILKA_H
+#define ZASILKA_H
+
 
 #include <iostream>
 
 class Zasilka
 {
-private:
+protected:
     std::string id;
     double* vaha;
 
     public:
 
-    Zasilka(std::string id, double vaha) : id (id), vaha(&vaha) {}
+    Zasilka(std::string id, double vaha);
 
     virtual ~Zasilka();
-    virtual void vypiss() const = 0;
+    virtual void vypis() const = 0;
     virtual double spoctiCenu() const;
+
+    //Přetížení operátoru == pro porovnání podle ID
+    bool operator==(const Zasilka& druha) const;
 };
+
+#endif
