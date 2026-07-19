@@ -12,5 +12,5 @@ void SporiciUcet :: VypisInfo()const{
 }
 
 double SporiciUcet :: spoctiUroku()const{
-   return BankonvniUcet::spoctiUroku() + (*(this->zustatek)+ bonusovaSazba);
+    return BankonvniUcet::spoctiUroku() + (*(this->zustatek)+ bonusovaSazba);
 }
